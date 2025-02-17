@@ -1,6 +1,6 @@
 # SAT Competition 2025: Call for Solvers and Benchmarks
 
-The 2025 SAT Competition is a competitive event for solvers of the Boolean Satisfiability (SAT) problem. It is organized as a satellite event to the 27th International Conference on Theory and Applications of Satisfiability Testing and stands in the tradition of the annual SAT Competitions and Races. The registration deadline is April 30th, 2025 (23:59 GMT -12). More details will be available at the competition website https://satcompetition.github.io/2025/.
+The 2025 SAT Competition is a competitive event for solvers of the Boolean Satisfiability (SAT) problem. It is organized as a satellite event to the 28th International Conference on Theory and Applications of Satisfiability Testing and stands in the tradition of the annual SAT Competitions and Races. The registration deadline is April 30th, 2025 (23:59 GMT -12). More details will be available at the competition website https://satcompetition.github.io/2025/.
 
 The area of SAT solving has seen tremendous progress over the last years. Many problems in applications such as hardware and software verification that seemed to be completely out of reach a decade ago can now be handled routinely. Besides new algorithms and better heuristics, refined implementation techniques turned out to be vital for this success.
 To keep up the driving force in improving SAT solvers, we want to motivate developers to present their work to a broader audience and to compare it with that of others.
