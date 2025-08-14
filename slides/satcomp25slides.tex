@@ -1,0 +1,676 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%   PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+%\documentclass[trans]{beamer}
+\documentclass{beamer}
+
+%\mode<presentation> {
+%
+%\usetheme{CambridgeUS}
+%
+%}
+
+\usecolortheme[RGB={196, 30, 58}]{structure}
+
+
+\usepackage{graphicx} % Allows including images
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+\usepackage{pgf}
+\usepackage{import}
+\usepackage{standalone}
+
+
+\usepackage{xcolor}
+\usepackage{tabularx}
+\renewcommand\tabularxcolumn[1]{m{#1}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\usepackage{multicol}
+\usepackage{multirow}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\definecolor{normalbg}{HTML}{EDF2FC}
+\definecolor{normalfg}{HTML}{012528}
+\definecolor{normalsymbol}{HTML}{012528}
+
+\definecolor{examplebg}{HTML}{1098F7}%{A76571}%
+\definecolor{alertbg}{HTML}{FAC05E}
+\definecolor{myblue}{HTML}{DA4167}
+
+\definecolor{blue}{HTML}{264653}
+\definecolor{green}{HTML}{2a9d8f}
+\definecolor{yellow}{HTML}{e9c46a}
+\definecolor{orange}{HTML}{f4a261}
+\definecolor{red}{HTML}{e76f51}
+
+%\setbeamercolor{normal text}{fg=normalfg,bg=white}
+%\setbeamercolor{alerted text}{fg=normalfg,bg=alertbg}
+%\setbeamercolor{example text}{fg=normalfg,bg=examplebg}
+%
+%\setbeamercolor{background canvas}{fg=normalfg,bg=white}
+%\setbeamercolor{background}{fg=black,bg=white}
+%
+%\setbeamercolor{palette primary}{fg=normalfg, bg=normalbg}
+%\setbeamercolor{palette secondary}{fg=normalfg, bg=alertbg}
+%\setbeamercolor{palette tertiary}{fg=normalfg, bg=examplebg}
+%
+%\setbeamercolor{block title}{fg=normalfg,bg=normalbg}
+%\setbeamertemplate{itemize item}{\color{normalfg}$\blacksquare$}
+%\setbeamertemplate{itemize subitem}{\color{normalfg}$\blacktriangleright$}
+
+%\setbeamercolor{frametitle}{fg=normalfg,bg=normalbg}
+%\setbeamercolor{title}{fg=normalfg,bg=normalbg}
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[SAT Competition 2023]{{\bf The Results of SAT Competition 2025}}%\\
+%Something old, something new,\\something borrowed, something blue}
+
+\author[Codel, Fazekas, Heule, Iser] {Cayden Codel, Katalin Fazekas, {\bf Marijn Heule},
+{Markus Iser}}
+\institute[] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{\Large 
+SAT 2025 Conference, Glasgow, Scotland \\ % Your institution for the title page
+}
+\date{August 14, 2025} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}{Competition Overview}
+
+\structure{\large SAT Competitions}
+\begin{itemize}
+\item 3 competitions in the 90s\hfill (1992,1993, 1996)
+\item 17 SAT Competitions \hfill (2002--)
+\item 5 SAT Races \hfill (2006, 2008, 2010, 2015, 2019)
+\item 1 SAT Challenge \hfill (2012)
+\end{itemize}
+
+\bigskip
+\bigskip
+
+\structure{\large Goals}
+\begin{itemize}
+\item Promotion of SAT solvers and their development
+\item Compilation of new challenging benchmarks
+\item Evaluation of current state-of-the-art solvers
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Key rules}
+\begin{itemize}
+\item Certified results of unsatisfiability using proof logging
+  \begin{itemize}
+  \item Instance is ``not solved'' if proof checker finds times out
+  \end{itemize}
+\medskip
+\item Disqualification of buggy solvers
+  \begin{itemize}
+  \item Producing an incorrect model
+  \item Report UNSAT on a known satisfiable instance
+  \end{itemize}
+\medskip
+\item Mandatory solver descriptions + open source
+\medskip
+\item Ranking scheme: PAR-2
+\begin{itemize}
+\item Favors solvers that are faster (not only count solved instances)
+\end{itemize}
+\medskip
+\item BYOB (Bring Your Own Benchmarks)
+\begin{itemize}
+\item At most 20 instances per participant are used
+\end{itemize} 
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{New This Year}
+
+\large
+
+Two new organizers:
+\begin{itemize}
+\item Cayden Codel and Katalin Fazekas
+\item Thanks to Matti Jarvisalo and Martin Suda!
+\end{itemize}
+
+\bigskip
+\bigskip
+\pause
+
+New infrastructure for the sequential track:
+\begin{itemize}
+\item Dirk Beyer's cluster at LMU
+\item Thanks to StarExec!
+\end{itemize}
+
+\bigskip
+\bigskip
+\pause
+
+Parallel track timeout: 1000s (previously 5000s)
+
+\bigskip
+
+Skip Cloud track: too demanding for AWS organizers
+
+\end{frame}
+
+\begin{frame}{Competition Summary}
+
+\large
+
+\structure{Main Track}: 400 benchmarks
+\begin{itemize}
+  \item 184 new submissions (73 SAT, 89 UNS, 22 UNK)
+  \item 116 unused old submissions (38 SAT, 38 UNS, 40 UNK)
+  \item 100 Anniversary track submissions (58 SAT, 42 UNS)
+  \item 26 sequential solvers
+  \item 8 parallel solvers
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Multiple Verified Checkers}
+
+Participants picked one of these options:
+\begin{itemize}
+\item Verified LRAT and LPR Proof Checking with cake\_lpr
+\\Yong Kiam Tan, Marijn J. H. Heule, and Magnus O. Myreen
+\item GRAT: a formally verified (UN)SAT proof checker\\
+Peter Lammich
+\item VeriPB and CakePB: Verified Pseudo-Boolean Proofs\\
+by Markus Anders, Bart Bogaerts, Benjamin Bogø, Arthur Gontier, Wietze Koops, Ciaran McCreesh, Magnus O. Myreen, Jakob Nordström, Adrian Rebola-Pardo, Andy Oertel, and Yong Kiam Tan
+\end{itemize}
+
+\bigskip
+
+Timeout:
+\begin{itemize}
+\item Solver: 5000 seconds
+\item Checker tool chain: 45000 seconds
+\end{itemize}
+
+\end{frame}
+
+\iffalse
+\begin{frame}{A Personal Note}
+
+Part of the organizing team since 2013
+
+\bigskip
+
+Rule since 2014: organizers cannot participate
+
+\bigskip
+
+This year, three groups at CMU wanted to participate
+\begin{itemize}
+\item Andrew Haberlandt and Harrison Green 
+\item Joseph Reeves and Randy Bryant 
+\item Md Solimul Chowdhury
+\end{itemize}
+
+\bigskip
+
+Involved with all of them (but I did not submit). I decided to:
+\begin{itemize}
+\item Submit no benchmarks
+\item Do not participate in benchmark selection 
+\item Recuse myself from any decisions that impact winners
+\end{itemize}
+
+\end{frame}
+\fi
+
+\iffalse
+\begin{frame}{Cloud Track}
+%%\begin{block}{Winning Solvers}\centering
+\begin{tabularx}{\linewidth}{clLrrc}
+\toprule
+& \bf Solver & \bf Authors & \bf PAR-2 & \bf Solved & \\ \midrule
+1 & Mallob1600 & Dominik Schreiber & 426.10 & 328 & \\[10pt] 
+2 & PRS-distributed & Zhihan Chen, Xindi Zhang,Yuhang Qianand, and Shaowei Cai & 530.92 & 305 \\[30pt] 
+3 & Malloblin & Md Solimul Chowdhury & 573.53 & 297 & \\
+\bottomrule
+\end{tabularx}
+%%\end{block}
+
+%satcomp-mallob,354.07
+%satcomp-prs-distributed,415.93
+%satcomp-solimul-cloud,501.56
+
+%\begin{block}{Results for Satisfiable Instances}\centering
+%\color{normalfg!50}
+%\begin{tabularx}{\linewidth}{clLrrc}
+%& \bf Solver & \bf Authors & \bf PAR-2 & \bf Solved & \\ \hline
+%1 & Mallob-KiCaLiGlu & Dominik Schreiber & 108.36 & 165 & \\ 
+%2 & Paracooba & Maximilian Heisinger & 795.02 & 111 & \\ 
+%\end{tabularx}
+%%\end{block}
+%
+%\begin{block}{Results for Unsatisfiable Instances}\centering
+%\color{normalfg!50}
+%\begin{tabularx}{\linewidth}{clLrrc}
+%& \bf Solver & \bf Authors & \bf PAR-2 & \bf Solved & \\ \hline
+%1 & Mallob-KiCaLiGlu & Dominik Schreiber & 179.48 & 176 & \\ 
+%2 & Paracooba & Maximilian Heisinger & 1012.13 & 110 & \\ 
+%\end{tabularx}
+%%\end{block}
+\end{frame}
+
+\begin{frame}{Cloud Track ALL Plot}
+\centering
+\includegraphics[width=.95\linewidth]{plots/cloud-all-2023.pdf}
+\end{frame}
+
+\begin{frame}{Cloud Track SAT Plot}
+\centering
+\includegraphics[width=.95\linewidth]{plots/cloud-sat-2023.pdf}
+\end{frame}
+
+\begin{frame}{Cloud Track UNSAT Plot}
+\centering
+\includegraphics[width=.95\linewidth]{plots/cloud-uns-2023.pdf}
+\end{frame}
+\fi
+
+\begin{frame}{Parallel Track SAT}
+%\begin{block}{Winning Solvers}\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}clLrr@{}c@{}}
+\toprule
+& \bf Solver & \bf Authors & \bf PAR-2 & \bf Solved & \\ \midrule
+1 & PL-PRS-Kissat & Mazigh Saoudi, Souheib Baarir, Julien Sopena, Thibault Lejemble, and Sabrine Saouli & 161.78 & 175 & \\[1em]
+2 & PRS-SC25-SBVA & Yuhang Qian, Zhihan Chen, Xindi Zhang, and Shaowei Cai & 183.23 & 174 & \\ 
+3 & MallobSat & Dominik Schreiber,  Niccolo Rigi-Luperti, and Armin Biere & 190.08 & 170\\
+\bottomrule
+\end{tabularx}
+%\end{block}
+\end{frame}
+
+
+\begin{frame}{Parallel Track SAT Plot}
+\centering
+
+\includegraphics[width=.95\linewidth]{plots/parallel-SAT.pdf}
+\end{frame}
+
+\begin{frame}{Parallel Track UNSAT}
+%\begin{block}{Winning Solvers}\centering
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{@{}clLrr@{}c@{}}
+\toprule
+& \bf Solver & \bf Authors & \bf PAR-2 & \bf Solved & \\ \midrule
+1 & MallobSat & Dominik Schreiber,  Niccolo Rigi-Luperti, and Armin Biere & 231.651 & 168 & \\ 
+2 & PL-PRS-Kissat & Mazigh Saoudi, Souheib Baarir, Julien Sopena, Thibault Lejemble, and Sabrine Saouli & 266.85 & 164 & \\ 
+3 & PRS-PaKisInc & Rodrigue Konan Tchinda and Clementin Tayou Djamegni  & 327.21 & 161 & \\ 
+\bottomrule
+\end{tabularx}
+%\end{block}
+\end{frame}
+
+
+
+\begin{frame}{Parallel Track UNSAT Plot}
+\centering
+
+\includegraphics[width=.95\linewidth]{plots/parallel-UNSAT.pdf}
+\end{frame}
+
+\begin{frame}{Parallel Track}
+%\begin{block}{Winning Solvers}\centering
+\renewcommand{\arraystretch}{2}
+\begin{tabularx}{\linewidth}{@{}clLrr@{}c@{}}
+\toprule
+& \bf Solver & \bf Authors & \bf PAR-2 & \bf Solved & \\ \midrule
+1 & MallobSat & Dominik Schreiber,  Niccolo Rigi-Luperti, and Armin Biere & 385.19 & 339 & \\ 
+2 & PL-PRS-Kissat & Mazigh Saoudi, Souheib Baarir, Julien Sopena, Thibault Lejemble, and Sabrine Saouli & 389.08 & 338 & \\ 
+3 & PRS-SC25-SBVA & Yuhang Qian, Zhihan Chen, Xindi Zhang, and Shaowei Cai & 443.07 & 334 & \\
+\bottomrule
+\end{tabularx}
+%\end{block}
+
+\medskip
+
+%\begin{itemize}
+%\item Similar number solved by parallel and cloud track winner\\(64 cores and 5000 seconds vs 1600 cores and 1000 seconds)
+%\end{itemize}
+
+\end{frame}
+
+
+%PRS,1738.73, 315 
+%Mallob64, 2272.73, 295
+%pKissat, 2294.50, 293
+%satcomp-pkissat-str,2325.8093523035227
+%satcomp-pkisds-step,2340.306590785908
+%mallob23-parallel-1,2460.387184281843
+%satcomp-pkisds,2475.898978319783
+%satcomp-nopre-prs,2496.050533875339
+%satcomp-solimul-parallel,2733.6742899728997
+%gimsatul,2833.0065528455284
+%nps-satcomp2023,2850.932111111111
+%dps-satcomp2023,2879.204222222222
+%pahkis23,3040.9479186991875
+%pakisinc23,3180.789544715448
+%satcomp-mergesat,4190.53901897019
+
+
+\begin{frame}{Parallel Track ALL Plot}
+\centering
+
+\includegraphics[width=.95\linewidth]{plots/parallel-ALL.pdf}
+\end{frame}
+
+
+
+%%%%%%%%% MAIN SAT %%%%%%%%%%%%%%
+
+\begin{frame}{Main (Sequential) Track SAT}
+\renewcommand{\arraystretch}{1.6}
+\begin{tabularx}{\linewidth}{@{}clLrr@{}c@{}}
+\toprule
+& \bf Solver & \bf Authors & \bf PAR-2 & \bf Solved & \\ \midrule
+1 & AE-Kissat-MAB & Hang Ding, Mao Luo, Chu-Min Li, Shunwei Li, Runyao Chen, Caiquan Xiong, and Xinyun Wu  & 715.92 & 173 & \\ 
+2 & Kissat-public & Armin Biere, Tobias Faller, Mathias Fleury, Nils Froleyks, and Florian Pollitt & 1397.09 & 163 & \\ 
+3 & Kissat-CURE & Yalun Cai, Mengxia Tao, Kezhi Li, Jiaying Zhu, Zhengyuan Shi, and Qiang Xu & 1525.91 & 159 &\\
+\bottomrule
+\end{tabularx}
+%\end{block}
+\end{frame}
+
+
+% Kissat-Pred & Chuan Luo, Zhenwei Yang, Shaoke Cui, and Chunming Hu
+
+
+\begin{frame}{Main (Sequential) Track SAT Plot}
+
+\centering
+
+\includegraphics[width=.95\linewidth]{plots/main-SAT.pdf}
+
+
+\end{frame}
+
+%%%%%%%%% MAIN UNSAT %%%%%%%%%%%%%%
+
+\begin{frame}{Main Sequential Track UNSAT}
+%\begin{block}{Winning Solvers}\centering
+\renewcommand{\arraystretch}{2}
+\begin{tabularx}{\linewidth}{@{}clLrr@{}c@{}}
+\toprule
+& \bf Solver & \bf Authors & \bf PAR-2 & \bf Solved & \\ \midrule
+1 & CaDiCaL-SC2025 & Armin Biere, Tobias Faller, Mathias Fleury, Nils Froleyks, and Florian Pollitt & 2327.00 & 161 & \\ 
+2 & hKis2-psids & Rodrigue Konan Tchinda and Clementin Tayou Djamegni & 2453.20 & 157 & \\ 
+3 & Kissat-VSA & Shuolin Li and Jialu Zhang & 2497.39 & 156\\
+\bottomrule
+\end{tabularx}
+%\end{block}
+\end{frame}
+
+
+\begin{frame}{Main (Sequential) Track UNSAT Plot}
+
+\centering
+
+\includegraphics[width=.95\linewidth]{plots/main-UNSAT.pdf}
+
+\end{frame}
+
+
+%%%%%%%%% MAIN ALL %%%%%%%%%%%%%%
+
+\begin{frame}{Main Sequential Track}
+%\begin{block}{Winning Solvers}\centering
+\renewcommand{\arraystretch}{1.7}
+\begin{tabularx}{\linewidth}{@{}clLrr@{}c@{}}
+\toprule
+& \bf Solver & \bf Authors & \bf PAR-2 & \bf Solved & \\ \midrule
+1 & AE-Kissat-MAB & Hang Ding, Mao Luo, Chu-Min Li, Shunwei Li, Runyao Chen, Caiquan Xiong, Xinyun Wu  & 2330.27 & 323 & \\ 
+2 & Kissat-public & Armin Biere, Tobias Faller, Mathias Fleury, Nils Froleyks, Florian Pollitt
+ & 2482.73 & 318 & \\ 
+3 & Kissat-Pred & Chuan Luo, Zhenwei Yang, Shaoke Cui, and Chunming Hu & 2557.75 & 315 &\\
+\bottomrule  
+\end{tabularx}
+%\end{block}
+\end{frame}
+
+
+\begin{frame}{Main (Sequential) Track ALL Plot}
+
+\centering
+
+\includegraphics[width=.95\linewidth]{plots/main-ALL.pdf}
+
+\end{frame}
+
+
+%\begin{frame}{Main Track Winners: Sequential, Parallel, Cloud}
+%\centering
+%\includegraphics[width=.8\linewidth]{plots/cloud-par-seq-main-2022.pdf}
+%\end{frame}
+
+
+
+%\begin{frame}{UNSAT Certificates for Parallel Solvers}
+%\begin{block}{UNSAT proof certificates will be enforced "sooner than you think"}
+%	\begin{itemize}\setlength\itemsep{1em}
+%		\item 2022: notable correctness issues with parallel solvers
+%		\item \emph{2023 will see a new track (per discussions at PoS 2022)}\\[.5em]
+%		\begin{itemize}\setlength\itemsep{1em}
+%			\item Incentives for developing proof certification for parallel SAT solvers
+%			\item (Perhaps not in 2023 though\dots but soon enough!)
+%		\end{itemize}
+%	\end{itemize}
+%%\end{block}
+%\end{frame}
+
+%\begin{frame}{New for 2023: Open Call for Proof Checkers}
+%\begin{block}{Support More Powerful Proof Systems}
+%\begin{itemize}\setlength\itemsep{.5em}
+%\item Call to be released by early September
+%\item Intent to submit (incl. extended abstract): early fall
+%\item Submission deadline: November 30, 2022 (preliminary)
+%\item Checkers announced by January 15, 2023 (preliminary)
+%\item \textbf{Requirement:} Checkers must be \emph{formally verified}
+%\item Main track UNSAT
+%\item \textbf{Implications:}
+%\begin{itemize}
+%\item Each solver must specify checker  be used to check its proofs
+%\item Per-instance time limit on proof checking 
+%\item "Solving" an instance requires that  proof can be checked 
+%\end{itemize}
+%\end{itemize}
+%%\end{block}
+%\end{frame}
+%
+%\begin{frame}{New for 2023: Challenge Track (preliminarily planned)}
+%\begin{block}{Large Anniversary Track Dataset}
+%\begin{itemize}\setlength\itemsep{1em}
+%\item Benchmark set public 
+%\item Benchmarks: unsolved instances from the 2022 Anniversary track
+%\item \textbf{Challenge:} Devise a SAT solver which can solve as many of the benchmark instances
+%\begin{itemize}\setlength\itemsep{1em}
+%\item "Solved": solved sequentially on StarExec within the 2022 Anniversary track time limit
+%\item Results checked by organizers
+%\item "Hall of fame": list for each instance authors who solved it and when was the certificate submitted
+%\end{itemize}
+%\end{itemize}
+%%\end{block}
+%\end{frame}
+
+\begin{frame}{Memory Issues in Main Track}
+
+\large
+
+On StarExec, developers were used to 128 GB of memory
+
+\bigskip
+
+The new LMU infrastructure has only 30 GB (as announced)
+\begin{itemize}
+\item Measuring the memory usage is difficult 
+\item Usually, an overapproximation is used
+\end{itemize}
+
+\bigskip
+
+However, several runs crashed at 20 GB allocation
+\begin{itemize}
+\item Parsing issues on some huge instances
+\item Proof checking issues on some big proofs
+\end{itemize}
+
+\pause
+\bigskip
+
+What to do next year?
+\begin{itemize}
+\item Limit size of benchmarks?
+\item More memory?
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Standarderize Output}
+
+\large
+
+The output of sequential solvers follows the conventions,\\
+but this is not the case for parallel / cloud solvers
+
+\bigskip
+
+Exit codes:
+\begin{itemize}
+\item {\tt 10}: Satisfiable
+\item {\tt 20}: Unsatisfiable
+\item Anything else: error
+\end{itemize}
+
+\bigskip
+
+Result line, starting with {\tt s}, only three options:
+\begin{itemize}
+\item {\tt s SATISFIALBE}: Satisfiable
+\item {\tt s UNSATISFIALBE}: Unsatisfiable
+\item {\tt s UNKNOWN} : error
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{AWS Infrastucture}
+
+\large
+
+AWS values research in parallel and cloud solvers
+\bigskip
+
+AWS plans to support parallel/cloud SAT+SMT competitions\!\!\!\!\!
+\begin{itemize}
+\item Statement of intent; nothing guaranteed
+\end{itemize}
+
+\bigskip
+
+Existing infrastructure proved difficult for both solver authors and Amazon staff
+\begin{itemize}
+\item (authors) Multiple Docker containers\\[5pt]
+\item (authors) AWS console interactions for configuration\\[5pt]
+\item (authors) Leftover infrastructure could use credits\\[5pt]
+\item (AWS) Debugging insufficiently tested solvers\\[5pt]
+\item (AWS) Inconsistencies in public and internal infrastructure
+\end{itemize}
+\end{frame}
+
+\begin{frame}{New Infrastructure Addresses Previous Issues}
+
+\large
+
+\begin{itemize}
+\item Same code used for development/testing and competition\!\!\!\!\\[10pt]
+\item AWS configuration, setup, teardown, and job submission managed by a single script\\[10pt]
+\item Author burden is vastly reduced
+\begin{enumerate}
+\normalsize
+\item Provide a Dockerfile that builds the solver image
+\item Single LoC to specify solver entrypoint and options\\[10pt]
+\end{enumerate}
+\item Single docker image for distributed leader and workers\\[10pt]
+\item Beta version used for this year’s parallel SAT contest
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{AWS Pre-Submission Testing and Analysis}
+
+\large
+
+\begin{itemize}
+\item AWS effort for solver debug was not sustainable\\[10pt]
+\item Test suite will be provided to solver authors in advance\\[10pt]
+\item Organizers will use the same tests to confirm readiness\\[10pt]
+\item Failing solvers will be disqualified\\[10pt]
+\item Analysis and visualization scripts will be public\\[10pt]
+\item Anyone can simulate the contest (with sufficient budget)
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{SAT Comp 2026 AWS Timetable}
+
+\large
+
+\begin{itemize}
+\item Preliminary code and instructions posted in October\\[10pt]
+\item We request community testing\\[10pt]
+\item Feedback to AWS by end of January\\[10pt]
+\item Updates in February and March\\[10pt]
+\item Final\footnote{\normalsize Subsequent changes may be needed; we will strive to minimize the impact on solver authors\\[20pt]} code and instructions posted in March
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Thank you!}
+\begin{center}
+\begin{tikzpicture}[fill=normalbg]
+\node[xshift=-2em] (aws) at (current page.north west) { \includegraphics[width=12em]{img/AWSlogo.png} };
+\node[xshift=-18em] (cas) at (current page.north east) { \includegraphics[width=10em]{img/filuta-and-symbol-stacked.png} };
+\node[fill=white, xshift=5em, yshift=15em] (sex) at (current page.south west) { \includegraphics[width=15em]{img/LMU.png} };
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
